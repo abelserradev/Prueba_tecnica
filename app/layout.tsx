@@ -6,6 +6,7 @@ import Footer from '@/components/footer';
 import NavigationProgress from '@/components/navigation-progress';
 import { CartProvider } from '@/contexts/cart-context';
 import { FavoritesProvider } from '@/contexts/favorites-context';
+import { APP_URL, METADATA_CONFIG } from '@/lib/config';
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -13,26 +14,21 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL 
-  || process.env.VERCEL_URL 
-  ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000';
-
 export const metadata: Metadata = {
   metadataBase: new URL(APP_URL),
   title: {
-    default: 'SambilStore - Tu tienda online de confianza',
-    template: '%s | SambilStore',
+    default: `${METADATA_CONFIG.appName} - ${METADATA_CONFIG.description}`,
+    template: `%s | ${METADATA_CONFIG.appName}`,
   },
   description: 'Descubre los mejores productos en nuestra tienda online. Electrónica, joyería, ropa y más con envío rápido.',
-  keywords: ['tienda online', 'ecommerce', 'productos', 'compras', 'electrónica', 'joyería', 'ropa'],
-  authors: [{ name: 'SambilStore Team' }],
+  keywords: [...METADATA_CONFIG.keywords],
+  authors: [{ name: `${METADATA_CONFIG.appName} Team` }],
   openGraph: {
     type: 'website',
-    locale: 'es_ES',
+    locale: METADATA_CONFIG.locale,
     url: '/',
-    siteName: 'SambilStore',
-    title: 'SambilStore - Tu tienda online de confianza',
+    siteName: METADATA_CONFIG.siteName,
+    title: `${METADATA_CONFIG.appName} - ${METADATA_CONFIG.description}`,
     description: 'Descubre los mejores productos en nuestra tienda online.',
     images: [
       {
@@ -45,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SambilStore - Tu tienda online de confianza',
+    title: `${METADATA_CONFIG.appName} - ${METADATA_CONFIG.description}`,
     description: 'Descubre los mejores productos en nuestra tienda online.',
   },
   robots: {

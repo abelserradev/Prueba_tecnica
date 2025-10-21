@@ -1,6 +1,8 @@
 import type { Product } from '@/types';
+import { API_CONFIG } from './config';
 
-const API_BASE_URL = 'https://fakestoreapi.com';
+// URL base de la API
+const API_BASE_URL = API_CONFIG.baseUrl;
 
 export async function getProducts(limit?: number): Promise<Product[]> {
   const url = limit 
