@@ -117,7 +117,7 @@ npm run dev
 git clone https://github.com/abelserradev/Prueba_tecnica.git
 
 # Navegar al directorio del proyecto
-cd Prueba_tecnica/sambilstore
+cd Prueba_tecnica
 ```
 
 ### **Paso 2: Instalar Dependencias**
