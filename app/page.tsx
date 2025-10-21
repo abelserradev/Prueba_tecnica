@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 import { getProducts } from '@/lib/api';
-import PaginatedProductList from '@/components/paginated-product-list';
+import InfiniteProductList from '@/components/infinite-product-list';
 import LoaderWithMinimumDisplay from '@/components/loader-with-minimum-display';
 import ErrorState from '@/components/error-state';
 import SearchBar from '@/components/search-bar';
@@ -23,7 +23,7 @@ async function ProductList() {
       );
     }
 
-    return <PaginatedProductList initialProducts={products} />;
+    return <InfiniteProductList initialProducts={products} />;
   } catch (error) {
     console.error('Error loading products:', error);
     return (

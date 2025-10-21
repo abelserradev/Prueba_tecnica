@@ -12,7 +12,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
-    <article className="card group animate-fade-in">
+    <article className="card group animate-fade-in product-card-hover">
               <Link
                 href={`/items/${product.id}`}
                 className="block focus:outline-none focus:ring-2 focus:ring-primary rounded-xl"

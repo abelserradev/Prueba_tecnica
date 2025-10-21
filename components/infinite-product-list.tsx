@@ -11,7 +11,7 @@ interface InfiniteProductListProps {
   initialProducts: Product[];
 }
 
-const PRODUCTS_PER_PAGE = 6;
+const PRODUCTS_PER_PAGE = 8;
 
 export default function InfiniteProductList({ initialProducts }: InfiniteProductListProps) {
   const [products, setProducts] = useState<Product[]>(initialProducts.slice(0, PRODUCTS_PER_PAGE));
@@ -26,6 +26,7 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
 
     setIsLoading(true);
     
+    // Simular carga de API con delay más realista
     setTimeout(() => {
       const nextPage = page + 1;
       const startIndex = page * PRODUCTS_PER_PAGE;
@@ -41,7 +42,7 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
       }
 
       setIsLoading(false);
-    }, 1000);
+    }, 800); // Reducido de 1000ms a 800ms para mejor UX
   }, [page, isLoading, hasMore, initialProducts]);
 
   useEffect(() => {
@@ -78,32 +79,45 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
   }
 
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="space-y-8">
+      {/* Grid de productos con animaciones mejoradas */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {products.map((product, index) => (
           <div
             key={`${product.id}-${index}`}
-            style={{ animationDelay: `${(index % PRODUCTS_PER_PAGE) * 0.1}s` }}
-            className="animate-slide-up"
+            style={{ 
+              animationDelay: `${(index % PRODUCTS_PER_PAGE) * 0.1}s`,
+              animationFillMode: 'both'
+            }}
+            className="animate-fade-in-up hover:transform hover:scale-105 transition-all duration-300"
           >
             <ProductCard product={product} onAddToCart={addToCart} />
           </div>
         ))}
       </div>
 
+      {/* Trigger para infinite scroll */}
       {hasMore && (
-        <div ref={observerTarget} className="mt-8">
+        <div ref={observerTarget} className="flex justify-center py-8">
           {isLoading && (
-            <div className="flex justify-center py-8">
+            <div className="flex flex-col items-center space-y-4">
               <Loader />
+              <p className="text-sm text-gray-500 animate-pulse">
+                Cargando más productos...
+              </p>
             </div>
           )}
         </div>
       )}
 
+      {/* Mensaje de fin de lista */}
       {!hasMore && products.length > 0 && (
-        <div className="text-center py-8" role="status">
-          <p className="text-gray-600">No hay más productos para mostrar</p>
+        <div className="text-center py-12" role="status">
+          <div className="inline-flex items-center space-x-2 text-gray-500">
+            <div className="w-8 h-px bg-gray-300"></div>
+            <span className="text-sm font-medium">Has visto todos los productos</span>
+            <div className="w-8 h-px bg-gray-300"></div>
+          </div>
         </div>
       )}
     </div>
