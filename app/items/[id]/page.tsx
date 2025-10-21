@@ -116,13 +116,13 @@ async function ProductDetail({ id }: { id: string }) {
 
         <div className="pt-6">
           {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb">
-            <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
-              <li>
+          <nav aria-label="Breadcrumb" className="w-full overflow-x-hidden">
+            <ol role="list" className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8 flex-wrap">
+              <li className="shrink-0">
                 <div className="flex items-center">
                   <Link 
                     href="/" 
-                    className="mr-2 text-sm font-medium text-gray-900 hover:text-gray-600"
+                    className="mr-2 text-sm font-medium text-gray-900 hover:text-gray-600 whitespace-nowrap"
                   >
                     Inicio
                   </Link>
@@ -132,17 +132,17 @@ async function ProductDetail({ id }: { id: string }) {
                     height={20}
                     viewBox="0 0 16 20"
                     aria-hidden="true"
-                    className="h-5 w-4 text-gray-300"
+                    className="h-5 w-4 text-gray-300 shrink-0"
                   >
                     <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
                   </svg>
                 </div>
               </li>
-              <li>
+              <li className="shrink-0">
                 <div className="flex items-center">
                   <Link 
                     href={`/categorys/${product.category}`}
-                    className="mr-2 text-sm font-medium text-gray-900 hover:text-gray-600 capitalize"
+                    className="mr-2 text-sm font-medium text-gray-900 hover:text-gray-600 capitalize whitespace-nowrap"
                   >
                     {product.category}
                   </Link>
@@ -152,14 +152,14 @@ async function ProductDetail({ id }: { id: string }) {
                     height={20}
                     viewBox="0 0 16 20"
                     aria-hidden="true"
-                    className="h-5 w-4 text-gray-300"
+                    className="h-5 w-4 text-gray-300 shrink-0"
                   >
                     <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
                   </svg>
                 </div>
               </li>
-              <li className="text-sm">
-                <span aria-current="page" className="font-medium text-gray-500 hover:text-gray-600 line-clamp-1">
+              <li className="text-sm min-w-0">
+                <span aria-current="page" className="font-medium text-gray-500 hover:text-gray-600 line-clamp-1 break-words">
                   {product.title}
                 </span>
               </li>
@@ -167,7 +167,7 @@ async function ProductDetail({ id }: { id: string }) {
           </nav>
 
           {/* Image gallery */}
-          <div className="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
+          <div className="mx-auto mt-6 w-full max-w-2xl px-4 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-8 lg:px-8">
             <div className="row-span-2 aspect-[3/4] w-full rounded-lg overflow-hidden bg-gray-100 max-lg:hidden">
               <Image
                 src={product.image}
@@ -317,7 +317,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
   const { id } = await params;
 
   return (
-    <article className="container-custom py-8">
+    <article className="w-full overflow-x-hidden">
       <Suspense fallback={
         <div className="flex justify-center items-center min-h-[400px]">
           <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
