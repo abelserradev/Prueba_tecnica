@@ -6,7 +6,7 @@ import SearchBar from '@/components/search-bar';
 import SortSelector from '@/components/sort-selector';
 
 export const metadata = {
-  title: 'Productos - Descubre nuestra colección',
+  title: 'Descubre nuestra colección',
   description: 'Explora nuestra amplia selección de productos de calidad. Electrónica, joyería, ropa y más.',
 };
 
