@@ -3,6 +3,7 @@ import { getProducts } from '@/lib/api';
 import InfiniteProductList from '@/components/infinite-product-list';
 import ErrorState from '@/components/error-state';
 import SearchBar from '@/components/search-bar';
+import SortSelector from '@/components/sort-selector';
 
 export const metadata = {
   title: 'Productos - Descubre nuestra colección',
@@ -50,6 +51,14 @@ export default function HomePage() {
           <Suspense fallback={<div className="h-12 bg-gray-100 rounded-lg animate-pulse"></div>}>
             <SearchBar />
           </Suspense>
+        </div>
+        
+        <div className="mb-8 flex justify-end">
+          <div className="w-full sm:w-64 md:w-72">
+            <Suspense fallback={<div className="h-12 bg-gray-100 rounded-lg animate-pulse"></div>}>
+              <SortSelector />
+            </Suspense>
+          </div>
         </div>
       </section>
 

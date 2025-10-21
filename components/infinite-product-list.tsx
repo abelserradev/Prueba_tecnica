@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useSearchParams } from 'next/navigation';
 import ProductCard from './product-card';
 import EmptyState from './empty-state';
 import { useCart } from '@/contexts/cart-context';
+import { sortProducts } from '@/lib/sort-products';
 import type { Product } from '@/types';
+import type { SortOption } from './sort-selector';
 
 interface InfiniteProductListProps {
   initialProducts: Product[];
@@ -13,12 +16,26 @@ interface InfiniteProductListProps {
 const PRODUCTS_PER_PAGE = 8;
 
 export default function InfiniteProductList({ initialProducts }: InfiniteProductListProps) {
-  const [products, setProducts] = useState<Product[]>(initialProducts.slice(0, PRODUCTS_PER_PAGE));
-  const [hasMore, setHasMore] = useState(initialProducts.length > PRODUCTS_PER_PAGE);
+  const searchParams = useSearchParams();
+  const sortParam = searchParams.get('sort') || 'relevance';
+  
+  const [products, setProducts] = useState<Product[]>([]);
+  const [hasMore, setHasMore] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const observerTarget = useRef<HTMLDivElement>(null);
   const { addToCart } = useCart();
+
+  // Efecto para manejar el ordenamiento y reinicializar cuando cambie
+  useEffect(() => {
+    const sortedProducts = sortProducts(initialProducts, sortParam as SortOption);
+    const initialSlice = sortedProducts.slice(0, PRODUCTS_PER_PAGE);
+    
+    setProducts(initialSlice);
+    setHasMore(sortedProducts.length > PRODUCTS_PER_PAGE);
+    setPage(1);
+    setIsLoading(false);
+  }, [initialProducts, sortParam]);
 
   const loadMoreProducts = useCallback(() => {
     if (isLoading || !hasMore) return;
@@ -27,22 +44,23 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
     
     // Simular carga de API con delay más realista
     setTimeout(() => {
+      const sortedProducts = sortProducts(initialProducts, sortParam as SortOption);
       const nextPage = page + 1;
-      const startIndex = page * PRODUCTS_PER_PAGE;
+      const startIndex = nextPage * PRODUCTS_PER_PAGE;
       const endIndex = startIndex + PRODUCTS_PER_PAGE;
-      const newProducts = initialProducts.slice(startIndex, endIndex);
+      const newProducts = sortedProducts.slice(startIndex, endIndex);
 
       if (newProducts.length > 0) {
         setProducts(prev => [...prev, ...newProducts]);
         setPage(nextPage);
-        setHasMore(endIndex < initialProducts.length);
+        setHasMore(endIndex < sortedProducts.length);
       } else {
         setHasMore(false);
       }
 
       setIsLoading(false);
     }, 800); // Reducido de 1000ms a 800ms para mejor UX
-  }, [page, isLoading, hasMore, initialProducts]);
+  }, [page, isLoading, hasMore, initialProducts, sortParam]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -109,14 +127,25 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
         </div>
       )}
 
-      {/* Mensaje de fin de lista */}
+      {/* Botón Back to Top al final de la lista */}
       {!hasMore && products.length > 0 && (
-        <div className="text-center py-12" role="status">
-          <div className="inline-flex items-center space-x-2 text-gray-500">
-            <div className="w-8 h-px bg-gray-300"></div>
-            <span className="text-sm font-medium">Has visto todos los productos</span>
-            <div className="w-8 h-px bg-gray-300"></div>
-          </div>
+        <div className="flex justify-center py-12" role="status">
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            className="group relative w-[50px] h-[50px] rounded-full bg-[rgb(20,20,20)] border-none font-semibold flex items-center justify-center shadow-[0px_0px_0px_4px_rgba(180,160,255,0.253)] cursor-pointer transition-all duration-300 overflow-hidden hover:w-[140px] hover:rounded-[50px] hover:bg-[rgb(181,160,255)]"
+            aria-label="Volver arriba"
+          >
+            <svg 
+              className="w-3 transition-all duration-300 group-hover:transform group-hover:-translate-y-[200%]" 
+              viewBox="0 0 384 512"
+              fill="white"
+            >
+              <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
+            </svg>
+            <span className="absolute -bottom-5 text-white text-[0px] transition-all duration-300 group-hover:text-[13px] group-hover:bottom-auto group-hover:opacity-100">
+              Back to Top
+            </span>
+          </button>
         </div>
       )}
     </div>
