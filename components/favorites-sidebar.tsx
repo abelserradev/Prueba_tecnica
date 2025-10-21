@@ -27,18 +27,18 @@ export default function FavoritesSidebar({ isOpen, onClose }: FavoritesSidebarPr
   useEffect(() => {
     const fetchFavoriteProducts = async () => {
       setIsLoading(true);
-      const productsWithDetails: FavoriteProduct[] = await Promise.all(
+      const productsWithDetails: (FavoriteProduct | null)[] = await Promise.all(
         favorites.map(async (productId) => {
           try {
             const product = await getProduct(productId.toString());
             return { ...product, isFavorite: true };
           } catch (error) {
             console.error(`Error loading favorite product ${productId}:`, error);
-            return { productId, isFavorite: true } as FavoriteProduct;
+            return null;
           }
         })
       );
-      setFavoriteProducts(productsWithDetails.filter(p => p.title));
+      setFavoriteProducts(productsWithDetails.filter(p => p && p.title) as FavoriteProduct[]);
       setIsLoading(false);
     };
 

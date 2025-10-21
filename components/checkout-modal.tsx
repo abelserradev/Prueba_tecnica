@@ -76,18 +76,18 @@ export default function CheckoutModal({ isOpen, onClose, singleProductId }: Chec
           setIsLoading(false);
         } else if (cart.length > 0) {
           // Compra desde el carrito
-          const productsWithDetails: CheckoutProduct[] = await Promise.all(
+          const productsWithDetails: (CheckoutProduct | null)[] = await Promise.all(
             cart.map(async (item) => {
               try {
                 const product = await getProduct(item.productId.toString());
                 return { ...product, quantity: item.quantity };
               } catch (error) {
                 console.error(`Error loading product ${item.productId}:`, error);
-                return { productId: item.productId, quantity: item.quantity } as CheckoutProduct;
+                return null;
               }
             })
           );
-          setCheckoutProducts(productsWithDetails.filter(p => p.title));
+          setCheckoutProducts(productsWithDetails.filter(p => p && p.title) as CheckoutProduct[]);
           setIsLoading(false);
         } else {
           setCheckoutProducts([]);

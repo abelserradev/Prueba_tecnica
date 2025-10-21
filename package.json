@@ -7,10 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
-    "test:ci": "jest --ci --coverage --watchAll=false",
     "setup:env": "node scripts/setup-env.js"
   },
   "dependencies": {
@@ -21,17 +17,12 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.15",
-    "@testing-library/jest-dom": "^6.1.5",
-    "@testing-library/react": "^14.1.2",
-    "@testing-library/user-event": "^14.5.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "autoprefixer": "^10.4.21",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "tailwindcss": "^4.1.15",
     "typescript": "^5"
