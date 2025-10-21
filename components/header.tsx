@@ -23,9 +23,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full bg-[#0d1117] shadow-lg overflow-x-hidden">
       <nav className="w-full max-w-[100vw] py-3 px-4" role="navigation" aria-label="Navegación principal">
-        <div className="flex items-center justify-between gap-2 max-w-7xl mx-auto">
+        <div className="relative flex items-center justify-between gap-2 max-w-7xl mx-auto">
           {/* Lado izquierdo - Menú móvil y navegación */}
-          <div className="flex items-center space-x-1 shrink-0">
+          <div className="flex items-center space-x-1 shrink-0 z-10">
             {/* Mobile Menu Button - Solo visible en móvil */}
             <div className="md:hidden">
               <MobileMenu 
@@ -38,10 +38,10 @@ export default function Header() {
             <DynamicNavigation />
           </div>
 
-          {/* Logo y texto centrado */}
+          {/* Logo y texto - Centrado en mobile, normal en desktop */}
           <Link 
             href="/" 
-            className="flex items-center space-x-2 text-base md:text-xl font-bold text-white hover:opacity-80 transition-colors focus:outline-none shrink-0"
+            className="flex items-center space-x-2 text-base md:text-xl font-bold text-white hover:opacity-80 transition-colors focus:outline-none shrink-0 absolute left-1/2 -translate-x-1/2 md:relative md:left-auto md:translate-x-0"
             aria-label="Ir a página principal"
           >
             <div className="relative w-8 h-8 md:w-12 md:h-12 -mt-1 shrink-0">
@@ -58,7 +58,7 @@ export default function Header() {
           </Link>
 
           {/* Lado derecho - Favoritos y Carrito */}
-          <div className="hidden md:flex items-center space-x-1 shrink-0">
+          <div className="hidden md:flex items-center space-x-1 shrink-0 z-10">
             {/* Botón de Favoritos */}
             <button
               onClick={() => setIsFavoritesOpen(true)}
@@ -87,6 +87,9 @@ export default function Header() {
               )}
             </button>
           </div>
+
+          {/* Espaciador invisible en mobile para balance */}
+          <div className="md:hidden w-10 shrink-0"></div>
         </div>
       </nav>
 
