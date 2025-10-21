@@ -23,6 +23,15 @@ export const metadata: Metadata = {
   description: 'Descubre los mejores productos en nuestra tienda online. Electrónica, joyería, ropa y más con envío rápido.',
   keywords: [...METADATA_CONFIG.keywords],
   authors: [{ name: `${METADATA_CONFIG.appName} Team` }],
+  icons: {
+    icon: [
+      { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' }
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   openGraph: {
     type: 'website',
     locale: METADATA_CONFIG.locale,
