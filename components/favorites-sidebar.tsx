@@ -8,7 +8,6 @@ import { HeartIcon as HeartSolidIcon } from '@heroicons/react/24/solid';
 import { useFavorites } from '@/contexts/favorites-context';
 import { getProduct } from '@/lib/api';
 import type { Product } from '@/types';
-import LoaderSmall from './loader-small';
 
 interface FavoritesSidebarProps {
   isOpen: boolean;
@@ -85,7 +84,7 @@ export default function FavoritesSidebar({ isOpen, onClose }: FavoritesSidebarPr
           <div className="flex-1 overflow-y-auto p-4">
             {isLoading ? (
               <div className="flex justify-center items-center h-full">
-                <LoaderSmall />
+                <div className="w-6 h-6 border-2 border-gray-200 border-t-primary rounded-full animate-spin"></div>
               </div>
             ) : favoriteProducts.length === 0 ? (
               <div className="text-center py-8">

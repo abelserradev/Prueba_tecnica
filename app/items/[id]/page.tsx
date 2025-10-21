@@ -4,7 +4,6 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { StarIcon } from '@heroicons/react/20/solid';
 import { getProduct, getProducts } from '@/lib/api';
-import { ProductDetailSkeleton } from '@/components/loading-skeleton';
 import ErrorState from '@/components/error-state';
 import ProductActions from '@/components/product-actions';
 
@@ -319,7 +318,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <article className="container-custom py-8">
-      <Suspense fallback={<ProductDetailSkeleton />}>
+      <Suspense fallback={
+        <div className="flex justify-center items-center min-h-[400px]">
+          <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
+        </div>
+      }>
         <ProductDetail id={id} />
       </Suspense>
     </article>

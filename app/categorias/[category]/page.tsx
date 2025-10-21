@@ -4,7 +4,6 @@ import type { Metadata } from 'next';
 import { getProductsByCategory, getCategories } from '@/lib/api';
 import { translateCategory } from '@/lib/category-translations';
 import CategoryProductList from '@/components/category-product-list';
-import LoaderWithMinimumDisplay from '@/components/loader-with-minimum-display';
 import EmptyState from '@/components/empty-state';
 import ErrorState from '@/components/error-state';
 
@@ -105,7 +104,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
       <Suspense fallback={
         <div className="flex justify-center items-center min-h-[400px]">
-          <LoaderWithMinimumDisplay minimumDisplayTime={800} />
+          <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
         </div>
       }>
         <CategoryProducts category={category} />

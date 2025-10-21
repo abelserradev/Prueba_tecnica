@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import ProductCard from './product-card';
-import Loader from './loader';
 import EmptyState from './empty-state';
 import { useCart } from '@/contexts/cart-context';
 import type { Product } from '@/types';
@@ -101,7 +100,7 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
         <div ref={observerTarget} className="flex justify-center py-8">
           {isLoading && (
             <div className="flex flex-col items-center space-y-4">
-              <Loader />
+              <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
               <p className="text-sm text-gray-500 animate-pulse">
                 Cargando más productos...
               </p>

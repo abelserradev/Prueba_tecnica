@@ -3,7 +3,6 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { getCategories } from '@/lib/api';
 import { translateCategory, getCategoryDescription } from '@/lib/category-translations';
-import LoaderWithMinimumDisplay from '@/components/loader-with-minimum-display';
 import ErrorState from '@/components/error-state';
 
 export const metadata: Metadata = {
@@ -94,7 +93,7 @@ export default function CategoriesPage() {
       <Suspense
         fallback={
           <div className="flex justify-center items-center min-h-[400px]">
-            <LoaderWithMinimumDisplay minimumDisplayTime={800} />
+            <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
           </div>
         }
       >

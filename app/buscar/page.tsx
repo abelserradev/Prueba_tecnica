@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { searchProducts } from '@/lib/api';
 import SearchProductList from '@/components/search-product-list';
-import LoaderWithMinimumDisplay from '@/components/loader-with-minimum-display';
 import EmptyState from '@/components/empty-state';
 import ErrorState from '@/components/error-state';
 
@@ -83,7 +82,7 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
 
       <Suspense fallback={
         <div className="flex justify-center items-center min-h-[400px]">
-          <LoaderWithMinimumDisplay minimumDisplayTime={800} />
+          <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
         </div>
       }>
         <SearchResults query={query} />

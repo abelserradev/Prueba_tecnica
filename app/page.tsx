@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
 import { getProducts } from '@/lib/api';
 import InfiniteProductList from '@/components/infinite-product-list';
-import LoaderWithMinimumDisplay from '@/components/loader-with-minimum-display';
 import ErrorState from '@/components/error-state';
 import SearchBar from '@/components/search-bar';
 
@@ -48,13 +47,15 @@ export default function HomePage() {
         </p>
         
         <div className="mb-8">
-          <SearchBar />
+          <Suspense fallback={<div className="h-12 bg-gray-100 rounded-lg animate-pulse"></div>}>
+            <SearchBar />
+          </Suspense>
         </div>
       </section>
 
       <Suspense fallback={
         <div className="flex justify-center items-center min-h-[400px]">
-          <LoaderWithMinimumDisplay minimumDisplayTime={800} />
+          <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
         </div>
       }>
         <ProductList />

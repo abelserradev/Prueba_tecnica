@@ -6,7 +6,6 @@ import { XMarkIcon, CreditCardIcon, BanknotesIcon, DevicePhoneMobileIcon, CheckC
 import { useCart } from '@/contexts/cart-context';
 import { getProduct } from '@/lib/api';
 import type { Product } from '@/types';
-import LoaderSmall from './loader-small';
 
 interface CheckoutModalProps {
   isOpen: boolean;
@@ -186,7 +185,7 @@ export default function CheckoutModal({ isOpen, onClose, singleProductId }: Chec
             
             {isLoading ? (
               <div className="flex justify-center items-center h-32">
-                <LoaderSmall />
+                <div className="w-6 h-6 border-2 border-gray-200 border-t-primary rounded-full animate-spin"></div>
               </div>
             ) : (
               <div className="space-y-3 sm:space-y-4">
