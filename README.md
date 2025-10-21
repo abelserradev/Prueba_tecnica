@@ -25,7 +25,7 @@ Una aplicación de e-commerce completa construida con **Next.js 15**, **React 19
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/abelserradev/Prueba_tecnica.git
-cd Prueba_tecnica/sambilstore
+cd Prueba_tecnica
 
 # 2. Instalar dependencias
 npm install
