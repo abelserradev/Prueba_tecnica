@@ -628,17 +628,6 @@ export default {
 };
 ```
 
-## 📈 Próximas Mejoras
-
-- [ ] **Autenticación**: Login/registro de usuarios
-- [ ] **Wishlist**: Lista de favoritos
-- [ ] **Reviews**: Sistema de reseñas
-- [ ] **Filtros avanzados**: Por precio, rating, etc.
-- [ ] **Checkout**: Proceso de compra completo
-- [ ] **Notificaciones**: Push notifications
-- [ ] **PWA**: Progressive Web App
-- [ ] **Analytics**: Google Analytics integration
-
 ## 🤝 Contribución
 
 1. Fork el proyecto
@@ -660,53 +649,8 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 ## 📞 Contacto
 
-- **Email**: info@sambilstore.com
 - **Teléfono**: 02121112233
 - **Website**: sambilstore.vercel.app
-
----
-
-## 🎯 Cumplimiento de Requisitos de Prueba Técnica
-
-### ✅ **Funcionalidades Obligatorias Implementadas**
-
-1. **Página principal (/)**
-   - ✅ Lista de productos con imagen, nombre, descripción, precio
-   - ✅ Infinite scroll (8 productos por carga)
-   - ✅ Animación hover (scale + shadow)
-   - ✅ Loading con tiempo mínimo visible
-
-2. **Página de detalle (/items/[id])**
-   - ✅ Datos extendidos del producto
-   - ✅ Metadatos SEO dinámicos
-   - ✅ JSON-LD (Schema.org Product)
-   - ✅ Breadcrumb navigation
-
-3. **Búsqueda**
-   - ✅ Barra de búsqueda en página principal
-   - ✅ Filtrado por título, descripción y categoría
-   - ✅ Estados: loading, empty, error
-
-4. **Categorías (/categorys)**
-   - ✅ Lista de categorías existentes
-   - ✅ Filtrado de productos por categoría
-   - ✅ Páginas individuales por categoría
-
-5. **Integración API REST**
-   - ✅ Consumo de FakeStore API
-   - ✅ Manejo de estados: loading, empty, error
-   - ✅ Caché y revalidación (3600s)
-
-6. **Responsive & Accesible**
-   - ✅ Diseño mobile-first
-   - ✅ Labels, roles ARIA, focus visible
-   - ✅ Contraste mínimo WCAG 2.1 AA
-
-7. **Rendimiento**
-   - ✅ Optimizaciones de Next.js
-   - ✅ Lazy loading de imágenes
-   - ✅ Server Components
-   - ✅ Sin bloqueos en render
 
 ---
 
