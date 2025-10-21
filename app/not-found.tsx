@@ -24,7 +24,7 @@ export default function NotFound() {
             Volver al inicio
           </Link>
           <Link 
-            href="/categorias" 
+            href="/categorys" 
             className="inline-block border-2 border-primary text-primary hover:bg-primary hover:text-white font-medium py-2 px-4 rounded-lg transition-all duration-200"
           >
             Ver categorías

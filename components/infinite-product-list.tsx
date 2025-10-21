@@ -19,8 +19,18 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
   const searchParams = useSearchParams();
   const sortParam = searchParams.get('sort') || 'relevance';
   
-  const [products, setProducts] = useState<Product[]>([]);
-  const [hasMore, setHasMore] = useState(true);
+  // Inicializar con los primeros productos ordenados
+  const getInitialState = () => {
+    const sortedProducts = sortProducts(initialProducts, sortParam as SortOption);
+    return {
+      products: sortedProducts.slice(0, PRODUCTS_PER_PAGE),
+      hasMore: sortedProducts.length > PRODUCTS_PER_PAGE,
+    };
+  };
+
+  const initialState = getInitialState();
+  const [products, setProducts] = useState<Product[]>(initialState.products);
+  const [hasMore, setHasMore] = useState(initialState.hasMore);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const observerTarget = useRef<HTMLDivElement>(null);
@@ -35,6 +45,9 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
     setHasMore(sortedProducts.length > PRODUCTS_PER_PAGE);
     setPage(1);
     setIsLoading(false);
+    
+    // Scroll al inicio cuando cambian los productos o el ordenamiento
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [initialProducts, sortParam]);
 
   const loadMoreProducts = useCallback(() => {
@@ -45,14 +58,13 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
     // Simular carga de API con delay más realista
     setTimeout(() => {
       const sortedProducts = sortProducts(initialProducts, sortParam as SortOption);
-      const nextPage = page + 1;
-      const startIndex = nextPage * PRODUCTS_PER_PAGE;
+      const startIndex = page * PRODUCTS_PER_PAGE;
       const endIndex = startIndex + PRODUCTS_PER_PAGE;
       const newProducts = sortedProducts.slice(startIndex, endIndex);
 
       if (newProducts.length > 0) {
         setProducts(prev => [...prev, ...newProducts]);
-        setPage(nextPage);
+        setPage(page + 1);
         setHasMore(endIndex < sortedProducts.length);
       } else {
         setHasMore(false);
@@ -132,7 +144,7 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
         <div className="flex justify-center py-12" role="status">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="group relative w-[50px] h-[50px] rounded-full bg-[rgb(20,20,20)] border-none font-semibold flex items-center justify-center shadow-[0px_0px_0px_4px_rgba(180,160,255,0.253)] cursor-pointer transition-all duration-300 overflow-hidden hover:w-[140px] hover:rounded-[50px] hover:bg-[rgb(181,160,255)]"
+            className="group relative w-[50px] h-[50px] rounded-full bg-[#014471] border-none font-semibold flex items-center justify-center shadow-[0px_0px_0px_4px_rgba(79,182,190,0.3)] cursor-pointer transition-all duration-300 overflow-hidden hover:w-[140px] hover:rounded-[50px] hover:bg-[#4FB6BE]"
             aria-label="Volver arriba"
           >
             <svg 
@@ -143,7 +155,7 @@ export default function InfiniteProductList({ initialProducts }: InfiniteProduct
               <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z" />
             </svg>
             <span className="absolute -bottom-5 text-white text-[0px] transition-all duration-300 group-hover:text-[13px] group-hover:bottom-auto group-hover:opacity-100">
-              Back to Top
+              Volver arriba
             </span>
           </button>
         </div>

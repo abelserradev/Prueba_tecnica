@@ -36,7 +36,7 @@ async function CategoriesList() {
         {categories.map((category, index) => (
           <Link
             key={category}
-            href={`/categorias/${category}`}
+            href={`/categorys/${category}`}
             className="card group hover:border-primary border-2 border-transparent transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
             style={{ animationDelay: `${index * 0.1}s` }}
           >

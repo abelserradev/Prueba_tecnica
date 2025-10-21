@@ -101,7 +101,7 @@ export default function MobileMenu({ onOpenCart, onOpenFavorites }: MobileMenuPr
 
               <li>
                 <Link
-                  href="/categorias"
+                  href="/categorys"
                   onClick={closeMenu}
                   className="flex items-center gap-3 px-4 py-3 text-white hover:bg-[#21262c] rounded-lg transition-colors"
                 >

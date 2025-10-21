@@ -141,7 +141,7 @@ async function ProductDetail({ id }: { id: string }) {
               <li>
                 <div className="flex items-center">
                   <Link 
-                    href={`/categorias/${product.category}`}
+                    href={`/categorys/${product.category}`}
                     className="mr-2 text-sm font-medium text-gray-900 hover:text-gray-600 capitalize"
                   >
                     {product.category}

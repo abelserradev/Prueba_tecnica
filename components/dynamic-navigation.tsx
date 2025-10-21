@@ -7,27 +7,38 @@ import { translateCategory } from '@/lib/category-translations';
 export default function DynamicNavigation() {
   const pathname = usePathname();
   
+  // Detectar si estamos en la página de inicio (productos)
+  const isHomePage = pathname === '/';
+  
   // Detectar si estamos en una página de categoría
-  const isCategoryPage = pathname.startsWith('/categorias/');
-  const currentCategory = isCategoryPage ? pathname.split('/categorias/')[1] : null;
+  const isCategoryPage = pathname.startsWith('/categorys/');
+  const currentCategory = isCategoryPage ? pathname.split('/categorys/')[1] : null;
   const translatedCategory = currentCategory ? translateCategory(decodeURIComponent(currentCategory)) : null;
 
   return (
     <div className="hidden md:flex items-center space-x-2">
       <Link
         href="/"
-        className="nav-button group relative flex items-center gap-1 px-3 py-2 text-white transition-all duration-200 hover:bg-[#21262c] focus:bg-[#1a1f24] active:bg-[#1a1f24] rounded"
+        className={`nav-button group relative flex items-center gap-1 px-3 py-2 text-white transition-all duration-200 rounded ${
+          isHomePage 
+            ? 'bg-[#2f81f7] hover:bg-[#1d4ed8] focus:bg-[#1d4ed8] active:bg-[#1d4ed8]' 
+            : 'hover:bg-[#21262c] focus:bg-[#1a1f24] active:bg-[#1a1f24]'
+        }`}
         role="menuitem"
       >
-        <span className="nav-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-4/5 bg-[#2f81f7] rounded-full opacity-0 group-focus:opacity-100 group-active:opacity-100 transition-opacity" />
+        <span className={`nav-indicator absolute left-0 top-1/2 -translate-y-1/2 w-1 h-4/5 rounded-full transition-opacity ${
+          isHomePage 
+            ? 'bg-white opacity-100' 
+            : 'bg-[#2f81f7] opacity-0 group-focus:opacity-100 group-active:opacity-100'
+        }`} />
         <svg className="w-4 h-4" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
           <path fill="currentColor" d="m1.5 13v1a.5.5 0 0 0 .3379.4731 18.9718 18.9718 0 0 0 6.1621 1.0269 18.9629 18.9629 0 0 0 6.1621-1.0269.5.5 0 0 0 .3379-.4731v-1a6.5083 6.5083 0 0 0 -4.461-6.1676 3.5 3.5 0 1 0 -4.078 0 6.5083 6.5083 0 0 0 -4.461 6.1676zm4-9a2.5 2.5 0 1 1 2.5 2.5 2.5026 2.5026 0 0 1 -2.5-2.5zm2.5 3.5a5.5066 5.5066 0 0 1 5.5 5.5v.6392a18.08 18.08 0 0 1 -11 0v-.6392a5.5066 5.5066 0 0 1 5.5-5.5z" />
         </svg>
-        <span className="text-sm">Productos</span>
+        <span className={`text-sm ${isHomePage ? 'font-medium' : ''}`}>Productos</span>
       </Link>
 
       <Link
-        href="/categorias"
+        href="/categorys"
         className="nav-button group relative flex items-center gap-1 px-3 py-2 text-white transition-all duration-200 hover:bg-[#21262c] focus:bg-[#1a1f24] active:bg-[#1a1f24] rounded"
         role="menuitem"
       >
@@ -42,7 +53,7 @@ export default function DynamicNavigation() {
       {/* Mostrar categoría actual si estamos en una página de categoría */}
       {isCategoryPage && translatedCategory && (
         <Link
-          href={`/categorias/${currentCategory}`}
+          href={`/categorys/${currentCategory}`}
           className="nav-button group relative flex items-center gap-1 px-3 py-2 text-white transition-all duration-200 bg-[#2f81f7] hover:bg-[#1d4ed8] focus:bg-[#1d4ed8] active:bg-[#1d4ed8] rounded"
           role="menuitem"
         >

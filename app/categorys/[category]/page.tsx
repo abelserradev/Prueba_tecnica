@@ -40,7 +40,7 @@ async function CategoryProducts({ category }: { category: string }) {
           title="No hay productos en esta categoría"
           description={`No encontramos productos en la categoría "${translateCategory(decodedCategory)}".`}
           actionLabel="Ver todas las categorías"
-          actionHref="/categorias"
+          actionHref="/categorys"
         />
       );
     }
@@ -82,7 +82,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </li>
           <li className="text-gray-400">/</li>
           <li>
-            <Link href="/categorias" className="text-primary hover:text-primary/80 transition-colors">
+            <Link href="/categorys" className="text-primary hover:text-primary/80 transition-colors">
               Categorías
             </Link>
           </li>

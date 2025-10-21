@@ -35,7 +35,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/categorias" className="hover:opacity-80 transition-colors focus:outline-none focus:ring-2 rounded" style={{ color: 'inherit' }}>
+                <Link href="/categorys" className="hover:opacity-80 transition-colors focus:outline-none focus:ring-2 rounded" style={{ color: 'inherit' }}>
                   Categorías
                 </Link>
               </li>
