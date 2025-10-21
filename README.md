@@ -662,7 +662,7 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más det
 
 - **Email**: info@sambilstore.com
 - **Teléfono**: 02121112233
-- **Website**: https://sambilstore.com
+- **Website**: sambilstore.vercel.app
 
 ---
 
