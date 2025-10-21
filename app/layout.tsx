@@ -13,7 +13,13 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+const APP_URL = process.env.NEXT_PUBLIC_APP_URL 
+  || process.env.VERCEL_URL 
+  ? `https://${process.env.VERCEL_URL}`
+  : 'http://localhost:3000';
+
 export const metadata: Metadata = {
+  metadataBase: new URL(APP_URL),
   title: {
     default: 'SambilStore - Tu tienda online de confianza',
     template: '%s | SambilStore',
@@ -24,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_ES',
-    url: 'https://sambilstore.com',
+    url: '/',
     siteName: 'SambilStore',
     title: 'SambilStore - Tu tienda online de confianza',
     description: 'Descubre los mejores productos en nuestra tienda online.',

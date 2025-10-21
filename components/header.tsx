@@ -41,7 +41,7 @@ export default function Header() {
           {/* Logo y texto centrado */}
           <Link 
             href="/" 
-            className="flex items-center space-x-1 text-lg md:text-xl font-bold text-white hover:opacity-80 transition-colors focus:outline-none absolute left-1/2 transform -translate-x-1/2"
+            className="flex items-center space-x-4 text-lg md:text-xl font-bold text-white hover:opacity-80 transition-colors focus:outline-none absolute left-1/2 transform -translate-x-1/2"
             aria-label="Ir a página principal"
           >
             <div className="relative w-10 h-10 md:w-12 md:h-12 -mt-1">
@@ -54,7 +54,7 @@ export default function Header() {
                 sizes="(max-width: 768px) 40px, 48px"
               />
             </div>
-            <span className="-ml-1">SambilStore</span>
+            <span className="ml-2">SambilStore</span>
           </Link>
 
           {/* Lado derecho - Favoritos y Carrito */}
@@ -68,13 +68,7 @@ export default function Header() {
               {favoritesCount > 0 ? (
                 <HeartSolidIcon className="w-6 h-6 group-hover:scale-110 transition-transform duration-200 text-red-500" />
               ) : (
-                <HeartIcon className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
-              )}
-              {/* Indicador de cantidad */}
-              {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-lg animate-pulse">
-                  {favoritesCount}
-                </span>
+                <HeartIcon className="w-6 h-6 group-hover:scale-110 transition-transform duration-200 text-gray-300 hover:text-red-400" />
               )}
             </button>
 
@@ -85,9 +79,9 @@ export default function Header() {
               aria-label="Ver carrito"
             >
               <ShoppingCartIcon className="w-6 h-6 group-hover:scale-110 transition-transform duration-200" />
-              {/* Indicador de cantidad */}
+              {/* Indicador de cantidad del carrito */}
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-lg animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center shadow-lg">
                   {cartCount}
                 </span>
               )}

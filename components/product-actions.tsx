@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useCart } from '@/contexts/cart-context';
 import { translateCategory } from '@/lib/category-translations';
+import CheckoutModal from './checkout-modal';
 
 interface ProductActionsProps {
   productId: number;
@@ -12,6 +13,7 @@ interface ProductActionsProps {
 
 export default function ProductActions({ productId, productTitle, category }: ProductActionsProps) {
   const [primaryBg, setPrimaryBg] = useState('var(--color-primary)');
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
@@ -19,7 +21,7 @@ export default function ProductActions({ productId, productTitle, category }: Pr
   };
 
   const handleBuyNow = () => {
-    addToCart(productId);
+    setIsCheckoutOpen(true);
   };
 
   return (
@@ -53,6 +55,13 @@ export default function ProductActions({ productId, productTitle, category }: Pr
       >
         Comprar ahora
       </button>
+
+      {/* Modal de Checkout */}
+      <CheckoutModal 
+        isOpen={isCheckoutOpen} 
+        onClose={() => setIsCheckoutOpen(false)}
+        singleProductId={productId}
+      />
     </div>
   );
 }

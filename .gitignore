@@ -17,16 +17,27 @@ dist/
 .env.test.local
 .env.production.local
 
-# IDE
+# IDE and Editor files
 .vscode/
 .idea/
-.cursor/
+*.swp
+*.swo
+*~
 
-# OS
+# OS generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
+# Cursor AI
+.cursor/
+
 # Logs
+logs
 *.log
 
 # Runtime data
@@ -37,7 +48,6 @@ pids
 
 # Coverage directory used by tools like istanbul
 coverage/
-*.lcov
 
 # nyc test coverage
 .nyc_output
@@ -70,16 +80,29 @@ jspm_packages/
 .cache
 .parcel-cache
 
-# Next.js build output
+# next.js build output
 .next
 
-# Nuxt.js build / generate output
+# nuxt.js build output
 .nuxt
-dist
 
-# Storybook build outputs
-.out
-.storybook-out
+# vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
 
 # Temporary folders
 tmp/
