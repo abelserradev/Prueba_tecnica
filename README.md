@@ -18,7 +18,6 @@ Una aplicación de e-commerce completa construida con **Next.js 15**, **React 19
 - [🧪 Testing y Demostración](#-testing-y-demostración)
 - [📊 Métricas de Rendimiento](#-métricas-de-rendimiento)
 - [🚀 Despliegue](#-despliegue)
-- [📚 Referencias](#-referencias)
 
 ## 🚀 Instalación Rápida
 
