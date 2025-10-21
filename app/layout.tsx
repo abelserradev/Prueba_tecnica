@@ -65,13 +65,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={inter.variable}>
-      <body className="flex flex-col min-h-screen">
+    <html lang="es" className={`${inter.variable} overflow-x-hidden`}>
+      <body className="flex flex-col min-h-screen overflow-x-hidden w-full">
         <CartProvider>
           <FavoritesProvider>
             <NavigationProgress />
             <Header />
-            <main className="flex-1">
+            <main className="flex-1 w-full overflow-x-hidden">
               {children}
             </main>
             <Footer />

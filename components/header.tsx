@@ -21,11 +21,11 @@ export default function Header() {
   const [isFavoritesOpen, setIsFavoritesOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#0d1117] shadow-lg">
-      <nav className="container-custom py-3" role="navigation" aria-label="Navegación principal">
-        <div className="flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-[#0d1117] shadow-lg overflow-x-hidden">
+      <nav className="w-full max-w-[100vw] py-3 px-4" role="navigation" aria-label="Navegación principal">
+        <div className="flex items-center justify-between gap-2 max-w-7xl mx-auto">
           {/* Lado izquierdo - Menú móvil y navegación */}
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-1 shrink-0">
             {/* Mobile Menu Button - Solo visible en móvil */}
             <div className="md:hidden">
               <MobileMenu 
@@ -41,24 +41,24 @@ export default function Header() {
           {/* Logo y texto centrado */}
           <Link 
             href="/" 
-            className="flex items-center space-x-4 text-lg md:text-xl font-bold text-white hover:opacity-80 transition-colors focus:outline-none absolute left-1/2 transform -translate-x-1/2"
+            className="flex items-center space-x-2 text-base md:text-xl font-bold text-white hover:opacity-80 transition-colors focus:outline-none shrink-0"
             aria-label="Ir a página principal"
           >
-            <div className="relative w-10 h-10 md:w-12 md:h-12 -mt-1">
+            <div className="relative w-8 h-8 md:w-12 md:h-12 -mt-1 shrink-0">
               <Image
                 src="/logo_sambil.jpg"
                 alt="Sambil Venezuela Logo"
                 fill
                 className="object-contain"
                 priority
-                sizes="(max-width: 768px) 40px, 48px"
+                sizes="(max-width: 768px) 32px, 48px"
               />
             </div>
-            <span className="ml-2">SambilStore</span>
+            <span className="ml-1 md:ml-2 whitespace-nowrap">SambilStore</span>
           </Link>
 
           {/* Lado derecho - Favoritos y Carrito */}
-          <div className="hidden md:flex items-center space-x-1">
+          <div className="hidden md:flex items-center space-x-1 shrink-0">
             {/* Botón de Favoritos */}
             <button
               onClick={() => setIsFavoritesOpen(true)}

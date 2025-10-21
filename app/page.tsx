@@ -37,38 +37,40 @@ async function ProductList() {
 
 export default function HomePage() {
   return (
-    <div className="container-custom py-8">
-      <section className="mb-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in" style={{ color: 'var(--color-text-primary)' }}>
-          Descubre Nuestros Productos
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8 animate-fade-in">
-          Encuentra los mejores productos con envío rápido y garantía de calidad. 
-          Explora nuestra colección completa.
-        </p>
-        
-        <div className="mb-8">
-          <Suspense fallback={<div className="h-12 bg-gray-100 rounded-lg animate-pulse"></div>}>
-            <SearchBar />
-          </Suspense>
-        </div>
-        
-        <div className="mb-8 flex justify-end">
-          <div className="w-full sm:w-64 md:w-72">
+    <div className="w-full overflow-x-hidden">
+      <div className="container-custom py-8">
+        <section className="mb-12 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in break-words" style={{ color: 'var(--color-text-primary)' }}>
+            Descubre Nuestros Productos
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8 animate-fade-in px-4">
+            Encuentra los mejores productos con envío rápido y garantía de calidad. 
+            Explora nuestra colección completa.
+          </p>
+          
+          <div className="mb-8 w-full px-4">
             <Suspense fallback={<div className="h-12 bg-gray-100 rounded-lg animate-pulse"></div>}>
-              <SortSelector />
+              <SearchBar />
             </Suspense>
           </div>
-        </div>
-      </section>
+          
+          <div className="mb-8 flex justify-end px-4">
+            <div className="w-full sm:w-64 md:w-72">
+              <Suspense fallback={<div className="h-12 bg-gray-100 rounded-lg animate-pulse"></div>}>
+                <SortSelector />
+              </Suspense>
+            </div>
+          </div>
+        </section>
 
-      <Suspense fallback={
-        <div className="flex justify-center items-center min-h-[400px]">
-          <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
-        </div>
-      }>
-        <ProductList />
-      </Suspense>
+        <Suspense fallback={
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
+          </div>
+        }>
+          <ProductList />
+        </Suspense>
+      </div>
     </div>
   );
 }

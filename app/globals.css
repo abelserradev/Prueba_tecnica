@@ -33,11 +33,13 @@ a {
 
 /* Componentes reutilizables */
 .container-custom {
+  width: 100%;
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
+  overflow-x: hidden;
 }
 
 @media (min-width: 640px) {

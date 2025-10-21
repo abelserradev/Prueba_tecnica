@@ -73,20 +73,22 @@ export default async function SearchPage({ searchParams }: SearchPageProps) {
   const query = params.q || '';
 
   return (
-    <div className="container-custom py-8">
-      <section className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2 animate-fade-in">
-          Búsqueda de Productos
-        </h1>
-      </section>
+    <div className="w-full overflow-x-hidden">
+      <div className="container-custom py-8">
+        <section className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2 animate-fade-in break-words px-4">
+            Búsqueda de Productos
+          </h1>
+        </section>
 
-      <Suspense fallback={
-        <div className="flex justify-center items-center min-h-[400px]">
-          <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
-        </div>
-      }>
-        <SearchResults query={query} />
-      </Suspense>
+        <Suspense fallback={
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
+          </div>
+        }>
+          <SearchResults query={query} />
+        </Suspense>
+      </div>
     </div>
   );
 }

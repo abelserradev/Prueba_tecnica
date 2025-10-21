@@ -80,25 +80,27 @@ async function CategoriesList() {
 
 export default function CategoriesPage() {
   return (
-    <div className="container-custom py-8">
-      <section className="mb-12 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-4 animate-fade-in">
-          Categorías de Productos
-        </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto animate-fade-in">
-          Explora nuestras diferentes categorías y encuentra exactamente lo que buscas.
-        </p>
-      </section>
+    <div className="w-full overflow-x-hidden">
+      <div className="container-custom py-8">
+        <section className="mb-12 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-text-primary mb-4 animate-fade-in break-words px-4">
+            Categorías de Productos
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto animate-fade-in px-4">
+            Explora nuestras diferentes categorías y encuentra exactamente lo que buscas.
+          </p>
+        </section>
 
-      <Suspense
-        fallback={
-          <div className="flex justify-center items-center min-h-[400px]">
-            <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
-          </div>
-        }
-      >
-        <CategoriesList />
-      </Suspense>
+        <Suspense
+          fallback={
+            <div className="flex justify-center items-center min-h-[400px]">
+              <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
+            </div>
+          }
+        >
+          <CategoriesList />
+        </Suspense>
+      </div>
     </div>
   );
 }

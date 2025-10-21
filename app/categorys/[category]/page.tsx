@@ -72,43 +72,45 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const categoryName = decodeURIComponent(category);
 
   return (
-    <div className="container-custom py-8">
-      <nav className="mb-6" aria-label="Breadcrumb">
-        <ol className="flex items-center space-x-2 text-sm">
-          <li>
-            <Link href="/" className="text-primary hover:text-primary/80 transition-colors">
-              Inicio
-            </Link>
-          </li>
-          <li className="text-gray-400">/</li>
-          <li>
-            <Link href="/categorys" className="text-primary hover:text-primary/80 transition-colors">
-              Categorías
-            </Link>
-          </li>
-          <li className="text-gray-400">/</li>
-          <li className="text-gray-600 capitalize" aria-current="page">
+    <div className="w-full overflow-x-hidden">
+      <div className="container-custom py-8">
+        <nav className="mb-6 overflow-x-auto" aria-label="Breadcrumb">
+          <ol className="flex items-center space-x-2 text-sm whitespace-nowrap">
+            <li className="shrink-0">
+              <Link href="/" className="text-primary hover:text-primary/80 transition-colors">
+                Inicio
+              </Link>
+            </li>
+            <li className="text-gray-400 shrink-0">/</li>
+            <li className="shrink-0">
+              <Link href="/categorys" className="text-primary hover:text-primary/80 transition-colors">
+                Categorías
+              </Link>
+            </li>
+            <li className="text-gray-400 shrink-0">/</li>
+            <li className="text-gray-600 capitalize" aria-current="page">
+              {translateCategory(categoryName)}
+            </li>
+          </ol>
+        </nav>
+
+        <section className="mb-8">
+          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2 capitalize animate-fade-in break-words">
             {translateCategory(categoryName)}
-          </li>
-        </ol>
-      </nav>
+          </h1>
+          <p className="text-gray-600 animate-fade-in">
+            Descubre nuestra selección de productos en esta categoría
+          </p>
+        </section>
 
-      <section className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-2 capitalize animate-fade-in">
-          {translateCategory(categoryName)}
-        </h1>
-        <p className="text-gray-600 animate-fade-in">
-          Descubre nuestra selección de productos en esta categoría
-        </p>
-      </section>
-
-      <Suspense fallback={
-        <div className="flex justify-center items-center min-h-[400px]">
-          <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
-        </div>
-      }>
-        <CategoryProducts category={category} />
-      </Suspense>
+        <Suspense fallback={
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="w-8 h-8 border-4 border-gray-200 border-t-primary rounded-full animate-spin"></div>
+          </div>
+        }>
+          <CategoryProducts category={category} />
+        </Suspense>
+      </div>
     </div>
   );
 }
