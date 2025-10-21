@@ -8,6 +8,7 @@ import { useCart } from '@/contexts/cart-context';
 import { getProduct } from '@/lib/api';
 import type { Product } from '@/types';
 import LoaderSmall from './loader-small';
+import CheckoutModal from './checkout-modal';
 
 interface CartSidebarProps {
   isOpen: boolean;
@@ -24,6 +25,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
   const { cart, updateQuantity, removeFromCart } = useCart();
   const [cartProducts, setCartProducts] = useState<CartProductWithDetails[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
 
   useEffect(() => {
     const fetchProductDetails = async () => {
@@ -223,9 +225,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
                 </div>
                 <button
                   className="w-full py-3 px-6 bg-primary text-white font-semibold rounded-lg hover:bg-secondary transition-colors shadow-md hover:shadow-lg"
-                  onClick={() => {
-                    alert('Funcionalidad de checkout próximamente...');
-                  }}
+                  onClick={() => setIsCheckoutOpen(true)}
                 >
                   Proceder al Pago
                 </button>
@@ -240,6 +240,12 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           )}
         </div>
       </div>
+
+      {/* Checkout Modal */}
+      <CheckoutModal 
+        isOpen={isCheckoutOpen} 
+        onClose={() => setIsCheckoutOpen(false)} 
+      />
     </>
   );
 }
